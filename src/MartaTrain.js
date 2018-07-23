@@ -8,7 +8,7 @@ const MartaTrain = ({ train }) => {
   const eventTime = train.EVENT_TIME;
 
   return (
-    <div>
+    <div className="train">
       <h3>Destination:{destination}</h3>
       <p>Line:{line}</p>
       <p>Wait-time:{waitTime}</p>

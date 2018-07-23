@@ -2,11 +2,7 @@ import React from "react";
 import MartaTrain from "./MartaTrain";
 
 //sort by order of stations
-const stations = {
-
-}
-
-
+const stations = {};
 
 const Marta_URL =
   "https://my-little-cors-proxy.herokuapp.com/http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1";
@@ -22,7 +18,9 @@ class MartaDashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1>Marta! Why you late all the time?!</h1>
+        <h1 className="border border-primary">
+          Marta! Why you late all the time?!
+        </h1>
         {this.state.data.map(this._convertTrainToElement)}
       </div>
     );
@@ -30,7 +28,7 @@ class MartaDashboard extends React.Component {
 
   componentDidMount() {
     this._getMartaData();
-    // setInterval(this._getMartaData, 5000);
+    setInterval(this._getMartaData, 5000);
   }
 
   //////ALL the extra helper functions///////////
