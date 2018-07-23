@@ -1,5 +1,6 @@
 import React from "react";
-import MartaTrain from "./MartaTrain";
+
+import MartaLine from './MartaLine';
 
 //sort by order of stations
 const stations = {};
@@ -21,7 +22,20 @@ class MartaDashboard extends React.Component {
         <h1 className="border border-primary">
           Marta! Why you late all the time?!
         </h1>
-        {this.state.data.map(this._convertTrainToElement)}
+        <MartaLine 
+        colorOfLine= "red"
+        arrOfTrains= {this.state.data}
+        />
+        <MartaLine 
+        colorOfLine= "blue"
+        arrOfTrains= {this.state.data}
+        />
+        <MartaLine 
+        colorOfLine= "gold"
+        arrOfTrains= {this.state.data}
+        />
+
+        
       </div>
     );
   }
@@ -71,18 +85,7 @@ class MartaDashboard extends React.Component {
     //Array.from converts information into an array
   };
 
-  _convertTrainToElement = train => {
-    // let trainPara = (
-    //   <p key={train.TRAIN_ID}>
-    //     {train.DESTINATION},
-    //     {train.LINE},
-    //     {train.DIRECTION},
-    //     {train.WAITING_TIME}
-    //   </p>
-    // );
-
-    return <MartaTrain key={train.TRAIN_ID} train={train} />;
-  };
+ 
 
   _sortByTime = trainArrayInfo => {
     trainArrayInfo.sort(function(a, b) {
