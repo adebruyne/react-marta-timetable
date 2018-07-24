@@ -1,6 +1,6 @@
 import React from "react";
 
-import MartaLine from './MartaLine';
+import MartaLine from "./MartaLine";
 
 //sort by order of stations
 const stations = {};
@@ -12,20 +12,30 @@ class MartaDashboard extends React.Component {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      visibleLineNames: ["green", "blue", "red", "gold"]
     };
   }
 
   render() {
+    let martaLines = this.state.visibleLineNames.map(line => {
+      return <MartaLine colorOfLine={line} arrOfTrains={this.state.data} />;
+    });
+
     return (
       <div>
         <h1 className="border border-primary">
           Marta! Why you late all the time?!
         </h1>
-        <MartaLine 
-        colorOfLine= "red"
-        arrOfTrains= {this.state.data}
-        />
+        <div>
+          <button onClick={()=> { this._toggleLine("all")}}>All Lines</button>
+          <button onClick={()=> { this._toggleLine("green")}}>green</button>
+          <button onClick={()=> { this._toggleLine("blue")}}>blue</button>
+          <button onClick={()=> { this._toggleLine("red")}}>red</button>
+          <button onClick={()=> { this._toggleLine("gold")}}>gold</button>
+        </div>
+        {martaLines}
+
         {/* <MartaLine 
         colorOfLine= "blue"
         arrOfTrains= {this.state.data}
@@ -34,8 +44,6 @@ class MartaDashboard extends React.Component {
         colorOfLine= "gold"
         arrOfTrains= {this.state.data}
         /> */}
-
-        
       </div>
     );
   }
@@ -46,6 +54,7 @@ class MartaDashboard extends React.Component {
   }
 
   //////ALL the extra helper functions///////////
+
   _getMartaData = () => {
     console.log("about to fetch");
     fetch(Marta_URL, {
@@ -85,8 +94,7 @@ class MartaDashboard extends React.Component {
     //Array.from converts information into an array
   };
 
- 
-//sortByTime needs to recieve an array- so we pass in the trainArrayInfo which could be called anything "jeff"
+  //sortByTime needs to recieve an array- so we pass in the trainArrayInfo which could be called anything "jeff"
 
   _sortByTime = trainArrayInfo => {
     trainArrayInfo.sort(function(a, b) {
@@ -103,6 +111,33 @@ class MartaDashboard extends React.Component {
     });
     return trainArrayInfo;
   };
+
+
+  //subtracts the lines from the screen once clicked
+  _toggleLine = (nameOfLine) => {
+      //check if nameOfLine is 'all'
+        if(nameOfLine === "all") {
+            this.setState({
+                visibleLineNames: ["green", "blue", "red", "gold"]
+            })
+        } else {
+      //if not, check if nameOfLine is in this.state.visibleLineNames
+            if (this.state.visibleLineNames.includes(nameOfLine)) {
+                //if so, filter it out
+                this.setState({
+                    visibleLineNames: this.state.visibleLineNames.filter(name => name !== nameOfLine)
+                })
+            } else {
+                //otherwise put it in
+                this.setState({
+                    visibleLineNames: [nameOfLine]
+                })
+            }
+    }
+      
+
+  }
+
 }
 
 export default MartaDashboard;
