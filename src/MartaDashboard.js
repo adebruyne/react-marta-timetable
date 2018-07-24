@@ -26,14 +26,14 @@ class MartaDashboard extends React.Component {
         colorOfLine= "red"
         arrOfTrains= {this.state.data}
         />
-        <MartaLine 
+        {/* <MartaLine 
         colorOfLine= "blue"
         arrOfTrains= {this.state.data}
         />
         <MartaLine 
         colorOfLine= "gold"
         arrOfTrains= {this.state.data}
-        />
+        /> */}
 
         
       </div>
@@ -86,6 +86,7 @@ class MartaDashboard extends React.Component {
   };
 
  
+//sortByTime needs to recieve an array- so we pass in the trainArrayInfo which could be called anything "jeff"
 
   _sortByTime = trainArrayInfo => {
     trainArrayInfo.sort(function(a, b) {

@@ -5,7 +5,10 @@ body {
 }
 
 h1 {
-  color: blue;
+  color: rgb(255, 174, 0);
+  font-size: 60px;
+  border: 2px dashed rgb(255, 174, 0);
+  border-radius: 20px;
 }
 
 .train {

@@ -1,23 +1,24 @@
 import React from "react";
 import MartaTrain from "./MartaTrain";
 
+
+// example usage: a bunch of trains , red line 
+
 const MartaLine = ({ colorOfLine, arrOfTrains }) => {
+
+    //we filter by the color of the train and we'll compare to the lower case version
+    //so the "bouncer" aka .filter asks the first train if its red, then it passes into the club aka gets drawn the the screen
+
   let colorTrains = arrOfTrains.filter(train => {
       return train.LINE.toLowerCase() == colorOfLine
   });
 
   return <div>{colorTrains.map(_convertTrainToElement)}</div>;
 };
-const _convertTrainToElement = train => {
-  // let trainPara = (
-  //   <p key={train.TRAIN_ID}>
-  //     {train.DESTINATION},
-  //     {train.LINE},
-  //     {train.DIRECTION},
-  //     {train.WAITING_TIME}
-  //   </p>
-  // );
 
+
+
+const _convertTrainToElement = (train) => {
   return <MartaTrain key={train.TRAIN_ID} train={train} />;
 };
 
